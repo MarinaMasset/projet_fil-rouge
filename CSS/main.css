@@ -1,0 +1,27 @@
+footer {
+    position:relative;
+    bottom:0;
+}
+
+.navbar, footer {
+background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(88,9,121,1) 28%, rgba(1,172,207,1) 70%, rgba(57,79,168,1) 100%);
+}
+
+.conForm {
+    padding-top:5%;
+}
+
+.conForm .form-label {
+    margin-top: 5%;
+}
+
+.conForm button {
+    border: rgb(112, 179, 193)  1px solid;
+    background:linear-gradient(20deg, rgba(88,9,121,1) 5%, rgba(1,172,207,1) 60%);
+    margin-top: 10%;
+}
+
+.conForm button:hover {
+    border: rgb(112, 179, 193)  1px solid;
+    background:linear-gradient(220deg, rgba(88,9,121,1) 5%, rgba(1,172,207,1) 60%);
+}
