@@ -10,11 +10,6 @@ if (isset($_SESSION['id']) && $_SESSION['role'] === 'super') {
   exit;
 }
 
-if (isset($_SESSION['id']) && ($_SESSION['role'] === 'directeur' || $_SESSION['role'] === 'magasinier')) {
-  header('Location: home.php');
-  exit;
-}
-
 
 require_once "../view/ViewTemplates.php";
 ViewTemplates::head(); ?>
@@ -41,17 +36,15 @@ ViewTemplates::head(); ?>
       if ($_SESSION['role'] === 'super') {
         header('Location: homeAdmin.php');
       }
-
-      if ($_SESSION['role'] === 'directeur' || 'magasinier') {
-        header('Location: home.php');
-      }
     } else {
       echo "Echec d'authentification";
-      echo "<a href='connexion-redirection.php'> Retour </a>";
+      echo "<a href='connexionAdmin.php'> Retour </a>";
     }
   } else {
     ViewTemplates::navConnexion();
+    ?> <main> <?php
     ViewConForm::connexionForm();
+    ?> </main> <?php
     ViewTemplates::footer();
   }
 

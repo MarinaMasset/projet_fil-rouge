@@ -3,6 +3,10 @@ footer {
     bottom:0;
 }
 
+main {
+    min-height: calc(100vh - 234px);
+}
+
 .navbar, footer {
 background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(88,9,121,1) 28%, rgba(1,172,207,1) 70%, rgba(57,79,168,1) 100%);
 }
@@ -24,4 +28,11 @@ background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(88,9,121,1) 28%, rgba(
 .conForm button:hover {
     border: rgb(112, 179, 193)  1px solid;
     background:linear-gradient(220deg, rgba(88,9,121,1) 5%, rgba(1,172,207,1) 60%);
+}
+
+.errorInput {
+    border: 2px solid red;
+}
+.errorMessage {
+    color: red;
 }

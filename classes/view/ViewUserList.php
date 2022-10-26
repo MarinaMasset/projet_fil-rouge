@@ -36,6 +36,7 @@ class ViewUserList
                                 <td><?= $value['prenom'] ?></td>
                                 <td><?= $value['mail'] ?></td>
                                 <td><?= $value['tel'] ?></td>
+                                <td><?= $value['role'] ?></td>
                                 <td>
                                     <a href="voir.php?id=<?= $value['id'] ?>" class="btn btn-success">Mon espace</a>
                                     <a href="modif.php?id=<?= $value['id'] ?>" class="btn btn-secondary text-white">Modifier mon compte</a>
@@ -90,6 +91,7 @@ class ViewUserList
                                 <td><?= $value['prenom'] ?></td>
                                 <td><?= $value['mail'] ?></td>
                                 <td><?= $value['tel'] ?></td>
+                                <td><?= $value['role'] ?></td>
                                 <td>
                                     <a href="voir.php?id=<?= $value['id'] ?>" class="btn btn-success">Accès aux comptes</a>
                                     <a href="modif.php?id=<?= $value['id'] ?>" class="btn btn-info text-white">Modifier</a>
