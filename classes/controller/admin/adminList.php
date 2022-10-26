@@ -1,6 +1,7 @@
 <?php 
-require_once "../view/ViewUserList.php"; 
-require_once "../view/ViewTemplates.php"; 
+session_start();
+require_once "../../view/ViewUserList.php"; 
+require_once "../../view/ViewTemplates.php"; 
 ViewTemplates::head();?>
 
     <title>Espace administrateur</title>

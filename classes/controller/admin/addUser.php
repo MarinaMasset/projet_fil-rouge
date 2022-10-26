@@ -1,5 +1,6 @@
 <?php 
-require_once "../view/ViewTemplates.php"; 
+session_start();
+require_once "../../view/ViewTemplates.php"; 
 ViewTemplates::head();?>
 
 <title>Ajout d'utilisateur</title>
@@ -7,12 +8,12 @@ ViewTemplates::head();?>
 
 <body>
   <?php
-  require_once "../view/ViewUserList.php";
-  require_once "../model/ModelList.php";
+  require_once "../../view/ViewForms.php";
+  require_once "../../model/ModelList.php";
 
-  ViewTemplates::nav();
+  ViewTemplates::navAdmin();
 
-  if(isset($_POST['ajout'])){
+  if(isset($_POST['addUser'])){
     if(ModelList::addUser($_POST['nom'], $_POST['prenom'], $_POST['mail'], $_POST['pass'], $_POST['tel'], $_POST['role'])) {
       ViewTemplates::alert("success", "insertion faite avec succes", "userList.php");
     }
@@ -21,7 +22,7 @@ ViewTemplates::head();?>
     }
   }
   else {
-    ViewUserList::userList();
+    ViewForms::addUserForm();
   }
   
   ViewTemplates::footer();

@@ -1,5 +1,5 @@
 <?php
-require_once "../model/ModelList.php";
+require_once "../../model/ModelList.php";
 
 class ViewUserList
 {

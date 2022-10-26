@@ -47,4 +47,85 @@ class ModelList
       ':role' => $role
     ]);
   }
+
+
+
+//Getters & Setters
+public function getId()
+  {
+    return $this->id;
+  }
+
+  public function getNom()
+  {
+    return $this->nom;
+  }
+
+  public function getPrenom()
+  {
+    return $this->prenom;
+  }
+
+  public function getMail()
+  {
+    return $this->mail;
+  }
+
+  public function getPass()
+  {
+    return $this->pass;
+  }
+
+  public function getTel()
+  {
+    return $this->tel;
+  }
+
+  public function getRole()
+  {
+    return $this->role;
+  }
+
+  public function setId($id)
+  {
+    $this->id = $id;
+    return $this;
+  }
+
+  public function setNom($nom)
+  {
+    $this->nom = $nom;
+    return $this;
+  }
+
+  public function setPrenom($prenom)
+  {
+    $this->prenom = $prenom;
+    return $this;
+  }
+
+  public function setMail($mail)
+  {
+    $this->mail = $mail;
+    return $this;
+  }
+
+  public function setPass($pass)
+  {
+    $this->pass = $pass;
+    return $this;
+  }
+
+  public function setTel($tel)
+  {
+    $this->tel = $tel;
+    return $this;
+  }
+
+  public function setRole($role)
+  {
+    $this->role = $role;
+    return $this;
+  }
+
 }

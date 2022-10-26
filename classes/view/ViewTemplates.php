@@ -11,8 +11,7 @@ class ViewTemplates
           <meta http-equiv="X-UA-Compatible" content="IE=edge">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-          <link href="../../CSS/main.css" rel="stylesheet">
-
+          <link href="../../../CSS/main.css" rel="stylesheet">
 <?php    
   }
 
@@ -37,17 +36,17 @@ class ViewTemplates
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="stocks.php">Vérifier les stocks</a>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="../../controller/user/userStocks.php">Vérifier les stocks</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="userList.php">Voir les utilisateurs</a>
+              <a class="nav-link active" aria-current="page" href="../../controller/user/userList.php">Voir les utilisateurs</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="ajout.php">Mon compte</a>
+              <a class="nav-link active" href="../../controller/user/account.php">Mon compte</a>
             </li>
-            <li>
-              <a class="nav-link active" href="../controller/deconnexion.php">Me déconnecter</a>
+            <li class="nav-item">
+              <a class="nav-link active" href="../../controller/deconnexion.php">Me déconnecter</a>
             </li>
           </ul>
           <form class="d-flex" role="search">
@@ -71,16 +70,16 @@ class ViewTemplates
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="stocks.php">Vérifier les stocks</a>
+              <a class="nav-link active" aria-current="page" href="../../controller/admin/adminStocks">Vérifier les stocks</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="adminList.php">Gérer les utilisateurs</a>
+              <a class="nav-link active" aria-current="page" href="../../controller/admin/adminList.php">Gérer les utilisateurs</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="addUser.php">Ajouter un utilisateur</a>
+              <a class="nav-link active" href="../../controller/admin/addUser.php">Ajouter un utilisateur</a>
             </li>
-            <li>
-              <a class="nav-link active" href="../controller/deconnexion.php">Me déconnecter</a>
+            <li class="nav-item">
+              <a class="nav-link active" href="../../controller/deconnexion.php">Me déconnecter</a>
             </li>
           </ul>
           <form class="d-flex" role="search">
@@ -116,7 +115,7 @@ class ViewTemplates
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" 
       crossorigin="anonymous">
   </script>
-  <script src="../../JS/main.js"></script>
+  <script src="../../../JS/main.js"></script>
   </body>
 </html>
   <?php

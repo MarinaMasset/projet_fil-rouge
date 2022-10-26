@@ -1,22 +1,22 @@
-$(document).on("submit", "form", function (e) {
-    e.preventDefault();
-
+$(document).on("submit", "form", function(e) {
+  
     let regexList = {
-        email: /^[a-z]{2,}\.[a-z]{2,}@domaine\.com$/,
+        mail: /^[a-z]{2,}\.[a-z]{2,}@domaine\.com$/,
         pass: /^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/,
     };
-
+    
     let formElements = $("form")[0];
     let error = false;
     $("small").text("");
 
-
     for (let i = 0; i < formElements.length - 1; i++) {
+        
+
         if (formElements[i].type === "password") {
             $("#pass").removeClass("errorInput");
 
             const pattern = regexList.pass;
-
+            
             if (pattern.test(formElements[i].value) === false) {
                 error = true;
                 $("#pass").addClass("errorInput");
@@ -29,9 +29,10 @@ $(document).on("submit", "form", function (e) {
         }
 
         if (formElements[i].type === "email") {
+
             $("#login").removeClass("errorInput");
     
-            const pattern = regexList.email;
+            const pattern = regexList.mail;
     
             if (pattern.test(formElements[i].value) === false) {
                 error = true;
@@ -44,7 +45,7 @@ $(document).on("submit", "form", function (e) {
             }
         }
     }
-    if (!error) {
-        $("form")[0].submit();
+    if (error) {
+        e.preventDefault();
     }
 });
