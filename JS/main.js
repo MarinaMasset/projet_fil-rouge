@@ -9,7 +9,7 @@ $(document).on("submit", "form", function(e) {
     let error = false;
     $("small").text("");
 
-    for (let i = 0; i < formElements.length - 1; i++) {
+    for (let i = 0; i < formElements.length - 2; i++) {
         
 
         if (formElements[i].type === "password") {
@@ -49,3 +49,4 @@ $(document).on("submit", "form", function(e) {
         e.preventDefault();
     }
 });
+

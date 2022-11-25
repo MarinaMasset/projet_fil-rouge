@@ -19,13 +19,13 @@ background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(88,9,121,1) 28%, rgba(
     margin-top: 5%;
 }
 
-.conForm button {
+.conForm button, .btn-gradient {
     border: rgb(112, 179, 193)  1px solid;
     background:linear-gradient(20deg, rgba(88,9,121,1) 5%, rgba(1,172,207,1) 60%);
     margin-top: 10%;
 }
 
-.conForm button:hover {
+.conForm button:hover, .btn-gradient:hover {
     border: rgb(112, 179, 193)  1px solid;
     background:linear-gradient(220deg, rgba(88,9,121,1) 5%, rgba(1,172,207,1) 60%);
 }

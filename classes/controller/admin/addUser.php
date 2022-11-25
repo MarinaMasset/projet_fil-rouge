@@ -1,6 +1,8 @@
 <?php 
 session_start();
 require_once "../../view/ViewTemplates.php"; 
+require_once "../../view/ViewUser.php";
+require_once "../../model/ModelUser.php";
 ViewTemplates::head();?>
 
 <title>Ajout d'utilisateur</title>
@@ -8,21 +10,27 @@ ViewTemplates::head();?>
 
 <body>
   <?php
-  require_once "../../view/ViewForms.php";
-  require_once "../../model/ModelList.php";
 
-  ViewTemplates::navAdmin();
+  if (isset($_SESSION['id']) && ($_SESSION['role'] === 'super')) {
 
-  if(isset($_POST['addUser'])){
-    if(ModelList::addUser($_POST['nom'], $_POST['prenom'], $_POST['mail'], $_POST['pass'], $_POST['tel'], $_POST['role'])) {
-      ViewTemplates::alert("success", "insertion faite avec succes", "userList.php");
+    ViewTemplates::navAdmin();
+
+    if(isset($_POST['addUser'])){
+      if(ModelUser::addUser( $_POST['nom'], $_POST['prenom'], $_POST['mail'], $_POST['pass'], $_POST['tel'], $_POST['role'])) {
+        ViewTemplates::alert("success", "Ajout d'utilisateur effectué avec succès", "adminList.php");
+      }
+      else {
+        ViewTemplates::alert("danger", "Échec de l'insertion", "addUser.php");
+      }
     }
     else {
-      ViewTemplates::alert("danger", "échec de l'insertion", "addUser.php");
+      ViewUser::addUserForm();
     }
+
   }
   else {
-    ViewForms::addUserForm();
-  }
-  
-  ViewTemplates::footer();
+    ViewTemplates::navConnexion();
+    ViewTemplates::alert("danger", "Vous n'avez pas accès à cette section du site ou votre session a expiré. <br/> Veuillez vous authentifier.", "adminConnexion.php");
+}
+
+ViewTemplates::footer();
