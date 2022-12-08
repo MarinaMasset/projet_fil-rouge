@@ -13,12 +13,14 @@ class ViewWarehouse
             <?php
             if ($list) {
             ?>
-            <div class="d-flex justify-content-end">
-                <a class="btn btn-gradient text-white mt-3" href="addWarehouse.php">Ajouter un nouveau dépôt</a>
-            </div>
-            
-            
-                <table class="table text-center">
+            <h2 class="text-center">Liste des dépôts</h2>
+            <?php if ($_SESSION['role'] === 'directeur') { ?>
+              <div class="d-flex justify-content-end">
+                  <a class="btn btn-gradient text-white m-2" href="addWarehouse.php">Ajouter un nouveau dépôt</a>
+              </div>
+            <?php } ?>
+
+                <table class="table text-center mt-5">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -34,17 +36,17 @@ class ViewWarehouse
                         foreach ($list  as $column => $value) {
                         ?> 
                             <tr>
-                                <th scope="row"><?= $value['id'] ?></th>
+                                <th scope="row"><?= $value['warehouseId'] ?></th>
                                 <td><?= $value['nom'] ?></td>
                                 <td><?= $value['ville'] ?></td>
                                 <td><?= $value['codePost'] ?></td>
                                 <td><?= $value['directeur'] ?></td>
                                 <td><?= $value['idDirecteur'] ?></td>
                                 <td>
-                                    <a href="warehouse.php?id=<?= $value['id'] ?>" class="btn btn-success me-1">Accès au dépôt</a>
+                                    <a href="warehouse.php?id=<?= $value['warehouseId'] ?>" class="btn btn-success me-1">Accès au dépôt</a>
                                     <?php if ($_SESSION['role'] === 'directeur') { ?>
-                                    <a href="updateWarehouse.php?id=<?= $value['id'] ?>" class="btn btn-info text-white me-1">Modifier</a>
-                                    <a href="suppressWarehouse.php?id=<?= $value['id'] ?>" type="button" class="btn btn-danger" data-id="<?= $value['id']?>">Supprimer</a>
+                                    <a href="updateWarehouse.php?id=<?= $value['warehouseId'] ?>" class="btn btn-secondary text-white me-1">Modifier</a>
+                                    <a href="deleteWarehouse.php?id=<?= $value['warehouseId'] ?>" type="button" class="btn btn-danger" data-id="<?= $value['warehouseId']?>">Supprimer</a>
                                     <?php } ?>
                                 </td>
                             </tr>
@@ -86,7 +88,7 @@ class ViewWarehouse
                         foreach ($list  as $column => $value) {
                         ?> 
                             <tr>
-                                <th scope="row"><?= $value['idDepot'] ?></th>
+                                <th scope="row"><?= $value['warehouseId'] ?></th>
                                 <td><?= $value['depot'] ?></td>
                                 <td><?= $value['ville'] ?></td>
                                 <td><?= $value['codePost'] ?></td>
@@ -95,8 +97,8 @@ class ViewWarehouse
                                 <td>
                                     <a href="warehouse.php?id=<?= $value['id'] ?>" class="btn btn-success me-1">Accès au dépôt</a>
                                     <?php if ($_SESSION['role'] === 'directeur') { ?>
-                                    <a href="updateWarehouse.php?id=<?= $value['idDepot'] ?>" class="btn btn-info text-white me-1">Modifier</a>
-                                    <a href="suppressWarehouse.php?id=<?= $value['idDepot'] ?>" type="button" class="btn btn-danger" data-id="<?= $value['id']?>">Supprimer</a>
+                                    <a href="updateWarehouse.php?id=<?= $value['warehouseId'] ?>" class="btn btn-secondary text-white me-1">Modifier</a>
+                                    <a href="deleteWarehouse.php?id=<?= $value['warehouseId'] ?>" type="button" class="btn btn-danger" data-id="<?= $value['id']?>">Supprimer</a>
                                     <?php } ?>
                                 </td>
                             </tr>
@@ -115,13 +117,13 @@ class ViewWarehouse
     }
 
     //Function to access the warehouse
-    public static function seeWarehouse($idDepot)
+    public static function seeWarehouse($warehouseId)
     {
-    $stocks =  ModelWarehouse::getStocks($idDepot);
-    $warehouse =  ModelWarehouse::getWarehouse($idDepot);
+    $stocks =  ModelWarehouse::getStocks($warehouseId);
+    $warehouse =  ModelWarehouse::getWarehouse($warehouseId);
             if ($stocks) {
             ?>
-                <h1 class="text-center"> Dépôt n°<?= $idDepot ?> : <?= $warehouse[0]['depot']; ?></h1>
+                <h1 class="text-center"> Dépôt n°<?= $warehouseId ?> : <?= $warehouse[0]['depot']; ?></h1>
                 <h2 class="text-center h6"> 
                     directeur responsable : <?= $warehouse[0]['directeur'] ?> <br>
                     contacter : <a href="mailto:<?= $warehouse[0]['mail'] ?>"> <?= $warehouse[0]['mail'] ?> </a> 
@@ -143,7 +145,7 @@ class ViewWarehouse
                     <tbody>
                         <?php
                         foreach ($stocks  as $column => $value) {
-                            if ($_GET['id'] === $value['idDepot']) {
+                            if ($_GET['id'] === $value['warehouseId']) {
                         ?> 
                             <tr>
                                 <th scope="row"> <?= $value['idProduit'] ?> </th>  
@@ -153,10 +155,9 @@ class ViewWarehouse
                                 <td> <img src="../../../images/<?= $value['photo'] ?>" width= "150px" alt="<?= $value['description'] ?>"> </td> 
                                 <td> <?= $value['description'] ?> </td> 
                                 <td>
-                                    <a href="warehouse.php?id=<?= $idDepot ?>" class="btn btn-success me-1">Accès au produit</a>
                                     <?php if ($_SESSION['role'] === 'directeur') { ?>
-                                    <a href="updateWarehouse.php?id=<?= $idDepot ?>" class="btn btn-info text-white me-1">Modifier</a>
-                                    <a href="suppressWarehouse.php?id=<?= $idDepot ?>" type="button" class="btn btn-danger" data-id="<?= $idDepot ?>">Supprimer</a>
+                                    <a href="updateStock.php?id=<?= $value['idProduit'] ?>&warehouseId=<?=$value['warehouseId']?>" class="btn btn-secondary text-white me-1">Modifier</a>
+                                    <a href="deleteStock.php?id=<?= $value['idProduit'] ?>&warehouseId=<?=$value['warehouseId']?>" type="button" class="btn btn-danger" data-id="<?= $warehouseId ?>">Supprimer</a>
                                     <?php } 
                             }
                             ?>
@@ -215,9 +216,9 @@ class ViewWarehouse
         </div>
         <br>
         <div class="form-group">
-          <label for="directeur">Directeur :</label>
+          <label for="idDirecteur">Directeur :</label>
           <select class="form-select"  name="idDirecteur" id="idDirecteur" aria-describedby="idDirecteurHelp" data-message="Veuillez sélectionner l'une des options du menu déroulant.">
-            <option selected value="">Cliquez pour dérouler</option>
+            <option selected value="">Cliquez pour choisir une option</option>
             <?php 
             foreach ($user as $column => $value) { 
                 if ($value['role'] === 'directeur') {
@@ -245,7 +246,7 @@ class ViewWarehouse
 
     ?>
     <form class="col-md-6 offset-md-3" method="post" action="updateWarehouse.php">
-      <input type="hidden" class="form-control" name="id" id="id" value="<?= $warehouse['idDepot'] ?>">
+      <input type="hidden" class="form-control" name="id" id="id" value="<?= $warehouse['warehouseId'] ?>">
       <div class="form-group">
         <label for="depot">Nom du dépôt : </label>
         <input type="text" class="form-control" name="depot" id="depot" value="<?= $warehouse['depot'] ?>">
@@ -280,7 +281,7 @@ class ViewWarehouse
         ?>
         <br/>
         <div class="text-center">
-          <button type="submit" class="btn btn-info me-2 text-white" name="update" id="update">Modifier</button>
+          <button type="submit" class="btn btn-secondary me-2 text-white" name="update" id="update">Modifier</button>
           <button type="reset" class="btn btn-danger">Réinitialiser</button>
         </div>
       </form>

@@ -8,7 +8,7 @@ ViewTemplates::head();?>
     </head>
     <body class="warehouseList">
         <?php
-          if (isset($_SESSION['id']) && ($_SESSION['role'] === 'directeur' || $_SESSION['role'] === 'magasinier')) {
+        if (isset($_SESSION['id']) && ($_SESSION['role'] === 'directeur' || $_SESSION['role'] === 'magasinier')) {
         
             ViewTemplates::nav();
             ?>

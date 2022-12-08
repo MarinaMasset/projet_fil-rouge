@@ -30,7 +30,7 @@ ViewTemplates::head();?>
   }
   else {
     ViewTemplates::navConnexion();
-    ViewTemplates::alert("danger", "Vous n'avez pas accès à cette section du site ou votre session a expiré. <br/> Veuillez vous authentifier.", "connexion.php");
+    ViewTemplates::alert("danger", "Vous n'avez pas accès à cette section du site ou votre session a expiré. <br/> Veuillez vous authentifier.");
 }
 
 ViewTemplates::footer();

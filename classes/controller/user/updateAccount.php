@@ -1,20 +1,19 @@
 <?php 
 session_start();
 require_once "../../view/ViewTemplates.php";
+require_once "../../view/ViewUser.php";
+require_once "../../model/ModelUser.php";
 ViewTemplates::head();?>
 <title>Modification de compte</title>
 </head>
 
 <?php
-require_once "../../view/ViewUser.php";
-require_once "../../model/ModelUser.php";
-
 if (isset($_SESSION['id']) && ($_SESSION['role'] === 'magasiner'||$_SESSION['role'] === 'directeur')) {
     ViewTemplates::nav();
 
     if (isset($_GET['id'])) {
         if (ModelUser::getAccount($_GET['id'])) {
-            ViewUser::ModifyUser($_GET['id']);
+            ViewUser::updateUser($_GET['id']);
         } else {
             ViewTemplates::alert("danger", "Cet utilisateur n'existe pas.", "userList.php");
         }

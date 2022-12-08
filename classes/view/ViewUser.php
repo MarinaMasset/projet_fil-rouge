@@ -41,6 +41,8 @@ class ViewUser
             <?php
             if ($list) {
             ?>
+            <h2 class="text-center">Liste des utilisateurs</h2>
+              <br>
                 <table class="table text-center">
                     <thead>
                         <tr>
@@ -94,7 +96,8 @@ class ViewUser
             <?php
             if ($list) {
             ?>
-            
+                <h2 class="text-center">Liste des utilisateurs</h2>
+                <br>
                 <table class="table text-center">
                     <thead>
                         <tr>
@@ -119,7 +122,7 @@ class ViewUser
                                 <td><?= $value['role'] ?></td>
                                 <td>
                                     <a href="userAccounts.php?id=<?= $value['id'] ?>" class="btn btn-success me-1">Accès au compte</a>
-                                    <a href="updateUsers.php?id=<?= $value['id'] ?>" class="btn btn-info text-white me-1">Modifier</a>
+                                    <a href="updateUsers.php?id=<?= $value['id'] ?>" class="btn btn-secondary text-white me-1">Modifier</a>
                                     <?php 
                                       if ($value['id'] !== $_SESSION['id']) {
                                     ?>
@@ -148,7 +151,8 @@ class ViewUser
     $user =  ModelUser::getAccount($id);
     if ($user) {
     ?>
-      <div class="container d-flex flex-column align-items-center" style="width: 21.5rem;">
+      <h2 class="text-center">Espace compte de <?= $user['nom'] ?> <?= $user['prenom'] ?></h2>
+      <div class="container d-flex flex-column align-items-center py-3" style="width: 21.5rem;">
       <a href="adminList.php" class="btn align-self-stretch text-white btn-gradient">↺ Retourner à la liste</a> 
         <div class="card" style="width: 20rem;">
           <div class="card-header text-center">
@@ -168,7 +172,7 @@ class ViewUser
               Rôle : <?= $user['role'] ?>
             </p>
             <div class="text-center">
-            <a href="updateUsers.php?id=<?= $user['id'] ?>" class="btn btn-success text-white me-2">Modifier</a>
+            <a href="updateUsers.php?id=<?= $user['id'] ?>" class="btn btn-secondary text-white me-2">Modifier</a>
             <?php 
             if ($user['id']!== $_SESSION['id']) {
               ?>
@@ -196,7 +200,8 @@ class ViewUser
     $user =  ModelUser::getAccount($id);
     if ($user) {
     ?>
-      <div class="container d-flex flex-column align-items-center" style="width: 21.5rem;">
+    <h2 class="text-center">Mon espace compte</h2>
+      <div class="container d-flex flex-column align-items-center py-3" style="width: 21.5rem;">
       <a href="userList.php" class="btn align-self-stretch text-white btn-gradient">↺ Retourner à la liste</a> 
         <div class="card" style="width: 20rem;">
           <div class="card-header text-center">
@@ -216,7 +221,7 @@ class ViewUser
               Rôle : <?= $user['role'] ?>
             </p>
             <div class="text-center">
-            <a href="updateAccount.php?id=<?= $user['id'] ?>" class="btn btn-success text-white me-2">Modifier</a>
+            <a href="updateAccount.php?id=<?= $user['id'] ?>" class="btn btn-secondary text-white me-2">Modifier</a>
             </div>         
           </div>
         </div>
@@ -268,7 +273,7 @@ class ViewUser
         <div class="form-group">
           <label for="role">Rôle :</label>
           <select class="form-select"  name="role" id="role" aria-describedby="roleHelp" data-message="Veuillez sélectionner l'un des rôles proposés dans la liste déroulante.">
-            <option selected value="">Cliquez pour dérouler</option>
+            <option selected value="">Cliquez pour choisir une option</option>
             <option value="directeur">Directeur</option>
             <option value="magasinier">Magasinier</option>
           </select>
@@ -284,7 +289,7 @@ class ViewUser
 <?php
   }
 
-  public static function modifyUser($id)
+  public static function updateUser($id)
   {
     $user = ModelUser::getAccount($id);
     ?>
@@ -327,7 +332,7 @@ class ViewUser
             <div class="form-group">
                 <label for="role">Rôle :</label>
                 <select class="form-select"  name="role" id="role" aria-describedby="roleHelp" data-message="Veuillez sélectionner l'un des rôles proposés dans la liste déroulante." value="<?= $user['role'] ?>">
-                  <option selected value="">Cliquez pour dérouler</option>
+                  <option selected value="">Cliquez pour choisir une option</option>
                   <option value="directeur">Directeur</option>
                   <option value="magasinier">Magasinier</option>
                 </select>
@@ -351,7 +356,7 @@ class ViewUser
         ?>
         <br/>
         <div class="text-center">
-          <button type="submit" class="btn btn-info me-2 text-white" name="modify" id="modify">Modifier</button>
+          <button type="submit" class="btn btn-secondary me-2 text-white" name="modify" id="modify">Modifier</button>
           <button type="reset" class="btn btn-danger">Réinitialiser</button>
         </div>
       </form>

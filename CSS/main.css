@@ -30,6 +30,14 @@ background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(88,9,121,1) 28%, rgba(
     background:linear-gradient(220deg, rgba(88,9,121,1) 5%, rgba(1,172,207,1) 60%);
 }
 
+.border-light {
+    border:1px grey solid !important;
+}
+
+.maxWidth {
+    max-width:250px;
+}
+
 .errorInput {
     border: 2px solid red;
 }

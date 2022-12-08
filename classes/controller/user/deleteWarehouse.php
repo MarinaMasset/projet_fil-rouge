@@ -9,15 +9,11 @@ session_start();
 
 <body>
   <?php
-  require_once "../../view/ViewUser.php";
-  require_once "../../model/ModelUser.php";
-
 if (isset($_SESSION['id']) && ($_SESSION['role'] === 'directeur')) {
   ViewTemplates::nav();
   
   if (isset($_GET['id'])) {
     if (ModelWarehouse::getWarehouse($_GET['id'])) {
-      var_dump(ModelWarehouse::deleteWarehouse($_GET['id']));
       if (ModelWarehouse::deleteWarehouse($_GET['id'])) {
         ViewTemplates::alert("success", "Le dépôt a bien été supprimé.", "warehouseList.php");
         exit;
@@ -35,7 +31,7 @@ if (isset($_SESSION['id']) && ($_SESSION['role'] === 'directeur')) {
 }
 else {
   ViewTemplates::navConnexion();
-  ViewTemplates::alert("danger", "Vous n'avez pas accès à cette section du site ou votre session a expiré. <br/> Veuillez vous authentifier.", "connexion.php");
+  ViewTemplates::alert("danger", "Vous n'avez pas accès à cette section du site ou votre session a expiré. <br/> Veuillez vous authentifier.");
 }
 
   ViewTemplates::footer();

@@ -59,7 +59,7 @@ class ModelUser
     ]);
   }
 
-  public static function modifyUser($id, $nom, $prenom, $mail, $tel, $role)
+  public static function updateUser($id, $nom, $prenom, $mail, $tel, $role)
   {
     $PDO = connexion();
     $request = $PDO->prepare("

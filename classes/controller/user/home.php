@@ -7,7 +7,6 @@ ViewTemplates::head(); ?>
     </head>
     <body>
         <?php
-
 if (isset($_SESSION['id']) && ($_SESSION['role'] !== 'super')) {
         ViewTemplates::nav();
         ?>

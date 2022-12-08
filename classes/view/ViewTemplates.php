@@ -37,7 +37,7 @@ class ViewTemplates
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="../../controller/user/userStocks.php">Vérifier les stocks</a>
+                <a class="nav-link active" aria-current="page" href="../../controller/user/stocksList.php">Vérifier les stocks</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="../../controller/user/userList.php">Voir les utilisateurs</a>

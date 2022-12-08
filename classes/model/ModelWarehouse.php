@@ -13,7 +13,7 @@ class ModelWarehouse
   private $longitude;
   private $latitude;
   private $depot;
-  private $idDepot;
+  private $warehouseId;
   private $idProduit;
   private $produit;
   private $quantite;
@@ -22,7 +22,7 @@ class ModelWarehouse
   private $description;
   private $search;
 
-  public function __construct($id= null, $nom = null, $ville = null, $codePost = null, $directeur=null, $idDirecteur=null, $mail=null, $longitude=null, $latitude=null, $depot=null, $idDepot=null, $idProduit=null, $produit=null, $quantite=null, $type=null, $photo=null, $description=null, $search=null)
+  public function __construct($id= null, $nom = null, $ville = null, $codePost = null, $directeur=null, $idDirecteur=null, $mail=null, $longitude=null, $latitude=null, $depot=null, $warehouseId=null, $idProduit=null, $produit=null, $quantite=null, $type=null, $photo=null, $description=null, $search=null)
   {
     $this->id= $id;
     $this->nom = $nom;
@@ -34,7 +34,7 @@ class ModelWarehouse
     $this->longitude = $longitude;
     $this->latitude = $latitude;
     $this->depot = $depot;
-    $this->idDepot = $idDepot;
+    $this->warehouseId = $warehouseId;
     $this->idProduit = $idProduit;
     $this->produit = $produit;
     $this->quantite = $quantite;
@@ -48,7 +48,7 @@ class ModelWarehouse
   {
     $PDO = connexion();
     $request = $PDO->prepare("
-    SELECT depot.id, depot.nom, ville, code_post as `codePost`, CONCAT(user.nom,' ',user.prenom) AS `directeur`, `#directeur` AS `idDirecteur` 
+    SELECT depot.id AS warehouseId, depot.nom, ville, code_post as `codePost`, CONCAT(user.nom,' ',user.prenom) AS `directeur`, `#directeur` AS `idDirecteur` 
     FROM depot 
     INNER JOIN user WHERE user.id = `#directeur`; 
     ");
@@ -56,31 +56,31 @@ class ModelWarehouse
     return $request->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public static function getStocks($idDepot) {
+  public static function getStocks($warehouseId) {
     $PDO = connexion();
     $request = $PDO->prepare("
-    SELECT `#id_depot` AS idDepot, `#id_pdt` AS idProduit, pdt.nom AS produit, quantite, CONCAT(`#type`,' - ',type_pdt.type) AS type, photo, description
+    SELECT `#id_depot` AS warehouseId, `#id_pdt` AS idProduit, pdt.nom AS produit, quantite, CONCAT(`#type`,' - ',type_pdt.type) AS type, photo, description
     FROM pdt_depot 
     INNER JOIN pdt ON `#id_pdt` = pdt.id
     INNER JOIN type_pdt ON `#type` = type_pdt.id
     INNER JOIN depot ON `#id_depot` = depot.id;
     ");
     $request->execute([
-      ':idDepot' => $idDepot
+      ':warehouseId' => $warehouseId
     ]);
     return $request->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public static function getWarehouse($idDepot) {
+  public static function getWarehouse($warehouseId) {
     $PDO = connexion();
     $request = $PDO->prepare("
-    SELECT depot.id AS idDepot, depot.nom AS depot, ville, code_post AS codePost, longitude, latitude, `#directeur` AS idDirecteur, CONCAT(user.nom,' ',user.prenom) AS directeur, mail
+    SELECT depot.id AS warehouseId, depot.nom AS depot, ville, code_post AS codePost, longitude, latitude, `#directeur` AS idDirecteur, CONCAT(user.nom,' ',user.prenom) AS directeur, mail
     FROM depot
     INNER JOIN user ON `#directeur`=user.id
-    WHERE depot.id = :idDepot;
+    WHERE depot.id = :warehouseId;
     ");
     $request->execute([
-      ':idDepot' => $idDepot
+      ':warehouseId' => $warehouseId
     ]);
     return $request->fetchAll(PDO::FETCH_ASSOC);
   }
@@ -133,11 +133,11 @@ class ModelWarehouse
   {
     $PDO = connexion();
     $request = $PDO->prepare("
-    SELECT depot.id AS idDepot, depot.nom AS depot, ville, code_post AS codePost, longitude, latitude, CONCAT(user.nom, ' ', user.prenom ) AS directeur, `#directeur` as idDirecteur 
+    SELECT depot.id AS warehouseId, depot.nom AS depot, ville, code_post AS codePost, longitude, latitude, CONCAT(user.nom, ' ', user.prenom ) AS directeur, `#directeur` as idDirecteur 
     FROM depot
     INNER JOIN user
     ON `#directeur` = user.id
-    WHERE idDepot LIKE CONCAT('%', :search , '%') OR depot LIKE CONCAT('%', :search , '%') OR ville LIKE CONCAT('%', :search , '%') OR codePost LIKE CONCAT('%', :search , '%') OR directeur LIKE CONCAT('%', :search , '%') OR idDirecteur LIKE CONCAT('%', :search , '%');
+    WHERE warehouseId LIKE CONCAT('%', :search , '%') OR depot LIKE CONCAT('%', :search , '%') OR ville LIKE CONCAT('%', :search , '%') OR codePost LIKE CONCAT('%', :search , '%') OR directeur LIKE CONCAT('%', :search , '%') OR idDirecteur LIKE CONCAT('%', :search , '%');
   ");
 
   $request->execute([":search" => $search]);
@@ -186,9 +186,9 @@ public function getId()
   {
     return $this->depot;
   }
-  public function getIdDepot()
+  public function getwarehouseId()
   {
-    return $this->idDepot;
+    return $this->warehouseId;
   }
   public function getIdProduit()
   {
@@ -269,9 +269,9 @@ public function setId($id)
     $this->depot= $depot;
     return $this;
   }
-  public function setIdDepot($idDepot)
+  public function setWarehouseId($warehouseId)
   {
-    $this->idDepot= $idDepot;
+    $this->warehouseId= $warehouseId;
     return $this;
   }
   public function setIdProduit($idProduit)

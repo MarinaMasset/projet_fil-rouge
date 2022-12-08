@@ -8,8 +8,6 @@ ViewTemplates::head();?>
     </head>
     <body>
         <?php
-        
-        
   if (isset($_SESSION['id']) && ($_SESSION['role'] === 'directeur' || $_SESSION['role'] === 'magasinier')) {
     ViewTemplates::nav();
     if (ModelWarehouse::getStocks($_GET['id'])) {

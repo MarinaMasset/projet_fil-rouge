@@ -15,14 +15,14 @@ if (isset($_SESSION['id']) && ($_SESSION['role'] === 'super')) {
 
   if (isset($_GET['id'])) {
       if (ModelUser::getAccount($_GET['id'])) {
-        ViewUser::ModifyUser($_GET['id']);
+        ViewUser::updateUser($_GET['id']);
       } else {
         ViewTemplates::alert("danger", "Cet utilisateur n'existe pas.", "adminList.php");
 
       }
   } else {
     if (isset($_POST['id']) && ModelUser::getAccount($_POST['id'])) {
-      if (ModelUser::modifyUser($_POST['id'], $_POST['nom'], $_POST['prenom'], $_POST['mail'], $_POST['tel'], $_POST['role'])) {
+      if (ModelUser::updateUser($_POST['id'], $_POST['nom'], $_POST['prenom'], $_POST['mail'], $_POST['tel'], $_POST['role'])) {
         ViewTemplates::alert("success", "Mise à jour effectuée !", "adminList.php");
       } else {
         ViewTemplates::alert("danger", "Échec de la mise à jour.", "adminList.php");

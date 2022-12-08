@@ -9,7 +9,6 @@ require_once "../../model/ModelWarehouse.php";
 </head>
 
 <?php
-
 if (isset($_SESSION['id']) && ($_SESSION['role'] === 'directeur')) {
   ViewTemplates::nav();
 
@@ -35,7 +34,7 @@ if (isset($_SESSION['id']) && ($_SESSION['role'] === 'directeur')) {
 
 else {
   ViewTemplates::navConnexion();
-  ViewTemplates::alert("danger", "Vous n'avez pas accès à cette section du site ou votre session a expiré. <br/> Veuillez vous authentifier.", "adminConnexion.php");
+  ViewTemplates::alert("danger", "Vous n'avez pas accès à cette section du site ou votre session a expiré. <br/> Veuillez vous authentifier.");
 }
 
       ViewTemplates::footer();
